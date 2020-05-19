@@ -6,6 +6,11 @@ GITHUB_VERSION=master
 
 # --- helper functions for logs ---
 
+info()
+{
+    echo "$@"
+}
+
 fatal()
 {
     echo '[ERROR] ' "$@" >&2
@@ -32,39 +37,40 @@ verify_downloader()
     return 0
 }
 
-# --- create tempory directory and cleanup when done ---
-setup_tmp() 
+# --- download binary from github url ---
+download_zip() 
 {
-    TMP_DIR=$(mktemp -d -t kubecms-install)
+    ZIP_FILE=${GITHUB_VERSION}.zip
+    ZIP_URL=${GITHUB_URL}/archive/${ZIP_FILE}
+
+    info "Downloading ${ZIP_URL}"
+
+    case $DOWNLOADER in
+        curl)
+            curl -o ${ZIP_FILE} -sfL $ZIP_URL
+            ;;
+        wget)
+            wget -qO ${ZIP_FILE} $ZIP_URL
+            ;;
+        *)
+            fatal "Incorrect executable '$DOWNLOADER'"
+            ;;
+    esac
+
+    # Abort if download command failed
+    [ $? -eq 0 ] || fatal 'Download failed'
 
     cleanup() 
     {
-        code=$?
-        set +e
-        trap - EXIT
-        rm -rf ${TMP_DIR}
+        rm ${ZIP_FILE}
         exit $code
     }
 
     trap cleanup INT EXIT
 }
 
-# --- download binary from github url ---
-download_binary() 
-{
-    ZIP_URL=${GITHUB_URL}/archive/${GITHUB_VERSION}.zip
-    info "Downloading zip ${ZIP_URL}"
-}
-
-# --- download and verify kubecms ---
-download_and_verify() 
-{
-    verify_downloader curl || verify_downloader wget || fatal 'Could not find curl or wget for downloading files'
-    setup_tmp
-    download_binary
-}
-
 {
     verify_system
-    download_and_verify
+    verify_downloader curl || verify_downloader wget || fatal 'Could not find curl or wget for downloading files'
+    download_zip
 }
