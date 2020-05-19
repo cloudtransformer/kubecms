@@ -3,10 +3,19 @@ set -e
 
 # --- helper functions for logs ---
 
+info()
+{
+    echo '[INFO] ' "$@"
+}
+
+warn()
+{
+    echo '[WARN] ' "$@" >&2
+}
+
 fatal()
 {
     echo '[ERROR] ' "$@" >&2
-    exit 1
 }
 
 # --- fatal if no kubectl ---
