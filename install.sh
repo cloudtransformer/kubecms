@@ -10,7 +10,8 @@ fatal()
 }
 
 # --- fatal if no kubectl ---
-verify_system() {
+verify_system() 
+{
     if [ -x "$(command -v kubectl)" ]; then
         HAS_KUBECTL=true
         return
