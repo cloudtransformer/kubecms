@@ -74,9 +74,16 @@ extract_zip()
     trap cleanup INT EXIT
 }
 
+# --- apply namespace manifest ---
+apply_namespace()
+{
+    
+}
+
 {
     verify_system
     verify_downloader curl || verify_downloader wget || fatal 'Could not find curl or wget for downloading files'
     download_zip
     extract_zip
+    apply_namespace
 }
