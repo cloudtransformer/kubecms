@@ -1,4 +1,4 @@
-name: registry
+name: publisher
 on:
   create:
     ref_type: tag
@@ -13,4 +13,4 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: kubecms/kubecms-publisher
         tag_with_ref: true
-        dockerfile: src/publisher/dockerfile
+        dockerfile: src/publisher/dockerfilegit secrets

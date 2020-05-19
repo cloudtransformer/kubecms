@@ -1,4 +1,4 @@
-name: registry
+name: backoffice
 on:
   create:
     ref_type: tag
