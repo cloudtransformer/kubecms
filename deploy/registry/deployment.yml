@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: kubecms
+  name: kubecms-registry
+  labels:
+    app: kubecms
+    service: kubecms-registry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubecms
+      service: kubecms-registry
+  template:
+    metadata:
+      labels:
+        app: kubecms
+        service: kubecms-registry
+    spec:
+      containers:
+      - name: kubecms-registry
+        image: kubecms/kubecms-registry:latest
+        ports:
+        - containerPort: 5000

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: kubecms
+  name: kubecms-publisher
+  labels:
+    app: kubecms
+    service: kubecms-publisher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubecms
+      service: kubecms-publisher
+  template:
+    metadata:
+      labels:
+        app: kubecms
+        service: kubecms-publisher
+    spec:
+      containers:
+      - name: kubecms-publisher
+        image: kubecms/kubecms-publisher:latest
+        ports:
+        - containerPort: 80

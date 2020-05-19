@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: kubecms
+  name: kubecms-data
+  labels:
+    app: kubecms
+    service: kubecms-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubecms
+      service: kubecms-data
+  template:
+    metadata:
+      labels:
+        app: kubecms
+        service: kubecms-data
+    spec:
+      containers:
+      - name: kubecms-data
+        image: kubecms/kubecms-data:latest
+        ports:
+        - containerPort: 80

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: kubecms
+  name: kubecms-backoffice
+  labels:
+    app: kubecms
+    service: kubecms-backoffice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubecms
+      service: kubecms-backoffice
+  template:
+    metadata:
+      labels:
+        app: kubecms
+        service: kubecms-backoffice
+    spec:
+      containers:
+      - name: kubecms-backoffice
+        image: kubecms/kubecms-backoffice:latest
+        ports:
+        - containerPort: 80

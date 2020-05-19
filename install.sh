@@ -80,10 +80,20 @@ apply_namespace()
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/namespace.yml"
 }
 
+# --- apply deployment manifests ---
+apply_deployments()
+{
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/backoffice/deployment.yml"
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/data/deployment.yml"
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/publisher/deployment.yml"
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/registry/deployment.yml"
+}
+
 {
     verify_system
     verify_downloader curl || verify_downloader wget || fatal 'Could not find curl or wget for downloading files'
     download_zip
     extract_zip
     apply_namespace
+    apply_deployments
 }
