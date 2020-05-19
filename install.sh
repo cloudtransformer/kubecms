@@ -77,7 +77,7 @@ extract_zip()
 # --- apply namespace manifest ---
 apply_namespace()
 {
-    
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/namespace.yml"
 }
 
 {
