@@ -1,9 +1,7 @@
 name: registry
-
 on:
   create:
     ref_type: tag
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,3 +15,4 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: kubecms/kubecms-registry
         tag_with_ref: true
+        dockerfile: src/registry/dockerfile
