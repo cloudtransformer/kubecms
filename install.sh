@@ -37,13 +37,11 @@ verify_downloader()
     return 0
 }
 
-# --- download binary from github url ---
+# --- download zip from github url ---
 download_zip() 
 {
     ZIP_FILE=${GITHUB_VERSION}.zip
     ZIP_URL=${GITHUB_URL}/archive/${ZIP_FILE}
-
-    info "Downloading ${ZIP_URL}"
 
     case $DOWNLOADER in
         curl)
@@ -59,10 +57,17 @@ download_zip()
 
     # Abort if download command failed
     [ $? -eq 0 ] || fatal 'Download failed'
+}
+
+# --- extract zip ---
+extract_zip() 
+{
+    unzip -o -qq ${ZIP_FILE}
 
     cleanup() 
     {
         rm ${ZIP_FILE}
+        rm -rf "kubecms-${GITHUB_VERSION}"
         exit $code
     }
 
@@ -73,4 +78,5 @@ download_zip()
     verify_system
     verify_downloader curl || verify_downloader wget || fatal 'Could not find curl or wget for downloading files'
     download_zip
+    extract_zip
 }
