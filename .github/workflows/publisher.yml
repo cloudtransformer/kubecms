@@ -13,4 +13,4 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: kubecms/kubecms-publisher
         tag_with_ref: true
-        dockerfile: src/publisher/dockerfilegit secrets
+        dockerfile: src/publisher/dockerfile
