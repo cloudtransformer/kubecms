@@ -16,6 +16,4 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: kubecms/kubecms-registry
-        tag_with_sha: true
         tag_with_ref: true
-        push: ${{ startsWith(github.ref, 'refs/tags/') }}
