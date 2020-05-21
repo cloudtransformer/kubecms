@@ -5,6 +5,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src/backoffice
     steps:
     - uses: actions/checkout@v2
     - uses: docker/build-push-action@v1
@@ -14,5 +17,4 @@ jobs:
         repository: kubecms/kubecms-backoffice
         tag_with_ref: true
         tags: latest
-        path: ./src/backoffice/
         dockerfile: dockerfile
