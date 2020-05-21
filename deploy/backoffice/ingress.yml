@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  namespace: kubecms
+  name: kubecms-backoffice
+  labels:
+    app: kubecms
+    service: kubecms-backoffice
+spec:
+  backend:
+    serviceName: kubecms-backoffice
+    servicePort: 5000

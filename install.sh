@@ -98,6 +98,12 @@ apply_services()
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/registry/service.yml"
 }
 
+# --- apply ingress manifests ---
+apply_ingress()
+{
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/backoffice/ingress.yml"
+}
+
 {
     verify_system
     verify_downloader curl || verify_downloader wget || fatal 'Could not find curl or wget for downloading files'
@@ -105,5 +111,5 @@ apply_services()
     extract_zip
     apply_namespace
     apply_deployments
-    apply_services
+    apply_ingress
 }
