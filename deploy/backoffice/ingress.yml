@@ -7,6 +7,10 @@ metadata:
     app: kubecms
     service: kubecms-backoffice
 spec:
-  backend:
-    serviceName: kubecms-backoffice
-    servicePort: 5000
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: kubecms-backoffice
+              servicePort: 5000
