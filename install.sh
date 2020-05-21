@@ -40,10 +40,12 @@ verify_downloader()
 # --- if minikube present, enable ingress ---
 verify_minikube() 
 {
-    if [ -x "$(command -v minikube)" ]; then
-        minikube addons enable ingress >/dev/null
+    if ! [ -x "$(command -v minikube)" ]; then
         return
     fi
+
+    minikube addons enable ingress >/dev/null
+    echo "minikube/ingress enabled"
 }
 
 # --- download zip from github url ---
@@ -113,11 +115,26 @@ apply_ingress()
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/backoffice/ingress.yml"
 }
 
-# --- apply ingress manifests ---
+# --- get backoffice address ---
 getting_backoffice_address()
 {
-    BACKOFFICE_IP=$(kubectl get ingress kubecms-backoffice --namespace kubecms -o jsonpath='{.status.loadBalancer.ingress[*].ip}')
-    
+    n=0
+    until [ "$n" -ge 20 ]
+    do
+        BACKOFFICE_IP=$(kubectl get ingress kubecms-backoffice --namespace kubecms -o jsonpath='{.status.loadBalancer.ingress[*].ip}')
+
+        if ! [ -z "$BACKOFFICE_IP" ]; then
+            break
+        fi
+
+        n=$((n+1)) 
+        sleep 5
+    done
+}
+
+# --- open backoffice url ---
+open_backoffice()
+{
     if [ -z "$BACKOFFICE_IP" ]; then
         return
     fi
@@ -134,11 +151,15 @@ getting_backoffice_address()
     verify_system
     verify_downloader curl || verify_downloader wget || fatal 'Could not find curl or wget for downloading files'
     verify_minikube
+
     download_zip
     extract_zip
+
     apply_namespace
     apply_deployments
     apply_services
     apply_ingress
+
     getting_backoffice_address
+    open_backoffice
 }
