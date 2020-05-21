@@ -7,8 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: cd src/backoffice
-    - run: pwd
     - uses: docker/build-push-action@v1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -16,4 +14,5 @@ jobs:
         repository: kubecms/kubecms-backoffice
         tag_with_ref: true
         tags: latest
-        dockerfile: dockerfile
+        path: src/backoffice
+        dockerfile: src/backoffice/dockerfile
