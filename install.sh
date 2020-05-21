@@ -111,5 +111,6 @@ apply_ingress()
     extract_zip
     apply_namespace
     apply_deployments
+    apply_services
     apply_ingress
 }
