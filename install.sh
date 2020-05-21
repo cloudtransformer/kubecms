@@ -89,6 +89,15 @@ apply_deployments()
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/registry/deployment.yml"
 }
 
+# --- apply service manifests ---
+apply_services()
+{
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/backoffice/service.yml"
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/data/service.yml"
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/publisher/service.yml"
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/registry/service.yml"
+}
+
 {
     verify_system
     verify_downloader curl || verify_downloader wget || fatal 'Could not find curl or wget for downloading files'
@@ -96,4 +105,5 @@ apply_deployments()
     extract_zip
     apply_namespace
     apply_deployments
+    apply_services
 }

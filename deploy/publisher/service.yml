@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: kubecms
+  name: kubecms-publisher
+  labels:
+    app: kubecms
+    service: kubecms-publisher
+spec:
+  selector:
+    app: kubecms
+    service: kubecms-publisher
+  ports:
+    - protocol: TCP
+      port: 5002
+      targetPort: 80
