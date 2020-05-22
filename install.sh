@@ -130,8 +130,6 @@ getting_backoffice_address()
         n=$((n+1)) 
         sleep 5
     done
-
-    echo "ingress.networking.k8s.io/kubecms-backoffice failed to get ip address"
 }
 
 # --- verify backoffice ---
@@ -156,8 +154,6 @@ verify_backoffice()
         n=$((n+1)) 
         sleep 5
     done
-
-    echo "kubecms-backoffice failed to start"
 }
 
 # --- open backoffice url ---
@@ -172,7 +168,7 @@ open_backoffice()
         return
     fi
 
-    echo "kubecms-backoffice opened"
+    echo "kubecms-backoffice opening"
     open $BACKOFFICE_URL
 }
 
