@@ -14,4 +14,5 @@ jobs:
         repository: kubecms/kubecms-data
         tag_with_ref: true
         tags: latest
-        dockerfile: src/data/dockerfile
+        dockerfile: ./src/data/dockerfile
+        path: ./src/data

@@ -132,6 +132,32 @@ getting_backoffice_address()
     done
 }
 
+# --- verify backoffice ---
+verify_backoffice()
+{
+    if [ -z "$BACKOFFICE_IP" ]; then
+        return
+    fi
+    
+    BACKOFFICE_URL="http://$BACKOFFICE_IP/"
+
+    n=0
+    until [ "$n" -ge 20 ]
+    do
+        BACKOFFICE_RESPONSE_CODE=$(curl --write-out %{http_code} --silent --output /dev/null $BACKOFFICE_URL)
+
+        echo $BACKOFFICE_RESPONSE_CODE
+
+        if [ "$BACKOFFICE_RESPONSE_CODE" = "200" ]; then
+            echo "Success"
+            break
+        fi
+
+        n=$((n+1)) 
+        sleep 5
+    done
+}
+
 # --- open backoffice url ---
 open_backoffice()
 {
@@ -140,11 +166,11 @@ open_backoffice()
     fi
 
     if [ -x "$(command -v start)" ]; then
-        start "http://$BACKOFFICE_IP/"
+        start $BACKOFFICE_URL
         return
     fi
 
-    open "http://$BACKOFFICE_IP/"
+    open $BACKOFFICE_URL
 }
 
 {
@@ -161,5 +187,6 @@ open_backoffice()
     apply_ingress
 
     getting_backoffice_address
+    verify_backoffice
     open_backoffice
 }
