@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: kubecms-publisher
-        image: kubecms/kubecms-publisher:latest
+        image: kubecms/kubecms-publisher:0.1.0-alpha-004
         ports:
         - containerPort: 80

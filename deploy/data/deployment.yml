@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: kubecms-data
-        image: kubecms/kubecms-data:latest
+        image: kubecms/kubecms-data:0.1.0-alpha-004
         ports:
         - containerPort: 80

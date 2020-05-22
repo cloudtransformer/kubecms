@@ -2,7 +2,7 @@
 set -e
 
 GITHUB_URL=https://github.com/kubecms/kubecms
-GITHUB_VERSION=0.1.0-alpha-004
+GITHUB_VERSION=master
 
 # --- helper functions for logs ---
 

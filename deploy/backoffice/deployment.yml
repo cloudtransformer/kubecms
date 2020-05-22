@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: kubecms-backoffice
-        image: kubecms/kubecms-backoffice:latest
+        image: kubecms/kubecms-backoffice:0.1.0-alpha-004
         ports:
         - containerPort: 80
