@@ -130,6 +130,8 @@ getting_backoffice_address()
         n=$((n+1)) 
         sleep 5
     done
+
+    echo "ingress.networking.k8s.io/kubecms-backoffice failed to get ip address"
 }
 
 # --- verify backoffice ---
@@ -138,7 +140,7 @@ verify_backoffice()
     if [ -z "$BACKOFFICE_IP" ]; then
         return
     fi
-    
+
     BACKOFFICE_URL="http://$BACKOFFICE_IP/"
 
     n=0
@@ -146,16 +148,16 @@ verify_backoffice()
     do
         BACKOFFICE_RESPONSE_CODE=$(curl --write-out %{http_code} --silent --output /dev/null $BACKOFFICE_URL)
 
-        echo $BACKOFFICE_RESPONSE_CODE
-
         if [ "$BACKOFFICE_RESPONSE_CODE" = "200" ]; then
-            echo "Success"
+            echo "kubecms-backoffice started"
             break
         fi
 
         n=$((n+1)) 
         sleep 5
     done
+
+    echo "kubecms-backoffice failed to start"
 }
 
 # --- open backoffice url ---
@@ -170,6 +172,7 @@ open_backoffice()
         return
     fi
 
+    echo "kubecms-backoffice opened"
     open $BACKOFFICE_URL
 }
 

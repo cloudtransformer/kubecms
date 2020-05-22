@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: kubecms-registry
-        image: kubecms/kubecms-registry:0.1.0-alpha-004
+        image: kubecms/kubecms-registry:latest
         ports:
         - containerPort: 5000
