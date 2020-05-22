@@ -14,5 +14,5 @@ jobs:
         repository: kubecms/kubecms-backoffice
         tag_with_ref: true
         tags: latest
-        path: src/backoffice
-        dockerfile: src/backoffice/dockerfile
+        dockerfile: ./src/backoffice/dockerfile
+        path: ./src/backoffice
