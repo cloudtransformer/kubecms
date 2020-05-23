@@ -20,7 +20,7 @@ kubectl get all,ingress --namespace kubecms
 
 # Status
 
-[![backoffice](https://github.com/kubecms/kubecms/workflows/backoffice/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%backoffice)
-[![data](https://github.com/kubecms/kubecms/workflows/data/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%data)
-[![publisher](https://github.com/kubecms/kubecms/workflows/publisher/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%publisher)
-[![registry](https://github.com/kubecms/kubecms/workflows/registry/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%registry)
+[![backoffice](https://github.com/kubecms/kubecms/workflows/backoffice/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3backoffice)
+[![data](https://github.com/kubecms/kubecms/workflows/data/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3data)
+[![publisher](https://github.com/kubecms/kubecms/workflows/publisher/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3publisher)
+[![registry](https://github.com/kubecms/kubecms/workflows/registry/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3registry)
