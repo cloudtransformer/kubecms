@@ -19,7 +19,7 @@
             .fade {
                 opacity: 0.54;
             }
-            .mdl-layout__content {
+            .mdl-layout__content-main {
                 background-color: #edeff0;
             }
             .mdl-layout__header-brand a.material-icons {
@@ -42,6 +42,100 @@
                 font-weight: 500;
                 font-family: Roboto;
             }
+            .mdl-layout__drawer {
+                background: none;
+                box-shadow: none;
+                border: none;
+            }
+            .mdl-grid {
+                padding-right: 20px;
+                padding-bottom: 20px;
+            }
+            .mdl-card {
+                width: 100%;
+                min-height: 0;
+                padding-bottom: 5px;
+            }
+            .mdl-card__title {
+                padding-top: 10px;
+                padding-bottom: 20px;
+            }
+            .mdl-card__title-text {
+                color: rgba(0,0,0,.54);
+                font-family: Roboto,Helvetica Neue,sans-serif;
+                font-size: 20px;
+                font-weight: 400;
+            }
+            .mdl-layout__drawer > .mdl-layout__title, .mdl-layout__drawer > .mdl-layout-title {
+                color: #000;
+                font-family: Roboto, "Helvetica Neue", sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 44px;
+                white-space: nowrap;
+                padding: 0;
+                margin: 0;
+            }
+            .mdl-layout__drawer .mdl-navigation {
+                padding-top: 0;
+            }
+            .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+                color: #000;
+                font-family: Roboto, "Helvetica Neue", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 32px;
+                white-space: nowrap;
+                padding: 0 0 0 12px;
+                margin: 0;
+            }
+            .mdl-layout__drawer .mdl-navigation .mdl-navigation__link-active {
+                color: rgb(50, 109, 230);
+                background: rgb(224, 224, 224);
+            }
+            .mdl-layout--fixed-drawer > .mdl-layout__drawer {
+                padding-left: 15px !important;
+                padding-right: 5px !important;
+            }
+            hr {
+                margin: 12px 0 4px;
+            }
+            .mdl-layout__drawer > .mdl-layout-title-muted {
+                color: rgba(0,0,0,.54);
+                font-family: Roboto,Helvetica Neue,sans-serif;
+                font-size: 12px;
+                line-height: 12px;
+                padding-top: 20px;
+            }
+            .mdl-layout__drawer .mdl-navigation .mdl-navigation__link-muted {
+                color: #000;
+                font-family: Roboto, "Helvetica Neue", sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 14px;
+                padding: 15px 0 10px;
+            }
+            .mdl-layout__drawer .mdl-navigation .mdl-navigation__link-muted:hover {
+                background: none;
+            }
+            .mdl-card__supporting-text {
+                padding-left: 20px;
+            }
+            .mdl-textfield--floating-label-extra-large {
+                width: 760px;
+                display: block;
+            }
+            .mdl-textfield--floating-label-large {
+                width: 400px;
+            }
+            .mdl-textfield--floating-label-medium {
+                width: 175px;
+            }
+            .mdl-chip-labels .mdl-chip-title {
+                width: 100%;
+                display: block;
+                padding-bottom: 5px;
+            }
         </style>
     </head>
     <body>
@@ -58,21 +152,122 @@
                 </div>
             </header>
             <header class="mdl-layout__header">
+                <div class="mdl-layout__drawer-button">
+                    <i class="material-icons">menu</i>
+                </div>
                 <div class="mdl-layout__header-row">
-                    <span class="mdl-layout-title"><span class="fade">Sites ></span> cloudtransformer.co.uk</span>
+                    <span class="mdl-layout-title"><span class="fade">Content > Home > Contact ></span> Thank You</span>
                 </div>
             </header>
-            <div class="mdl-layout__drawer">
-                <nav class="mdl-navigation">
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                </nav>
-            </div>
-            <main class="mdl-layout__content">
+            <main class="mdl-layout__content mdl-layout__content-main">
                 <div class="page-content">
-                    @RenderBody()
+                    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+                        <div class="mdl-layout__drawer">
+                            <span class="mdl-layout-title mdl-layout-title-muted">Site</span>
+                            <nav class="mdl-navigation">
+                                <span class="mdl-navigation__link mdl-navigation__link-muted" href="">cloudtransformer.co.uk</span>
+                            </nav>
+                            <hr />
+                            <span class="mdl-layout-title">Drive</span>
+                            <nav class="mdl-navigation">
+                                <a class="mdl-navigation__link mdl-navigation__link-active" href="">Content</a>
+                                <a class="mdl-navigation__link" href="">Media</a>
+                                <a class="mdl-navigation__link" href="">Redirects</a>
+                            </nav>
+                            <span class="mdl-layout-title">Settings</span>
+                            <nav class="mdl-navigation">
+                                <a class="mdl-navigation__link" href="">Domains</a>
+                                <a class="mdl-navigation__link" href="">Content Templates</a>
+                                <a class="mdl-navigation__link" href="">Content Types</a>
+                                <a class="mdl-navigation__link" href="">Media Types</a>
+                                <a class="mdl-navigation__link" href="">Property Types</a>
+                                <a class="mdl-navigation__link" href="">Scale</a>
+                            </nav>
+                            <span class="mdl-layout-title">Status</span>
+                            <nav class="mdl-navigation">
+                                <a class="mdl-navigation__link" href="">Dashboard</a>
+                                <a class="mdl-navigation__link" href="">Publisher</a>
+                                <a class="mdl-navigation__link" href="">Storage</a>
+                                <a class="mdl-navigation__link" href="">Versions</a>
+                            </nav>
+                        </div>
+                        <main class="mdl-layout__content">
+                            <div class="page-content">
+                                <div class="mdl-grid">
+                                    <div class="mdl-cell mdl-cell--12-col">
+                                        <div class="mdl-card__title">
+                                            <h2 class="mdl-card__title-text">Properties</h2>
+                                        </div>
+                                        <div class="mdl-card mdl-shadow--2dp">
+                                            <div class="mdl-card__supporting-text">
+                                                <form action="#">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--floating-label-large">
+                                                        <input class="mdl-textfield__input" type="text" id="content-name" value="Thank You" />
+                                                        <label class="mdl-textfield__label" for="content-name">Name</label>
+                                                    </div>
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--floating-label-medium">
+                                                        <input class="mdl-textfield__input" type="text" id="content-created-date" value="23 May 2020" readonly />
+                                                        <label class="mdl-textfield__label" for="content-created-date">Created</label>
+                                                    </div>
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--floating-label-medium">
+                                                        <input class="mdl-textfield__input" type="text" id="content-created-by" value="Dan Lister" readonly />
+                                                        <label class="mdl-textfield__label" for="content-created-by">Created By</label>
+                                                    </div>
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--floating-label-extra-large">
+                                                        <input class="mdl-textfield__input" type="text" id="content-created-by" value="/contact/thank-you/" readonly />
+                                                        <label class="mdl-textfield__label" for="content-created-by">Path</label>
+                                                    </div>
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--floating-label-extra-large">
+                                                        <input class="mdl-textfield__input" type="text" id="content-type" value="Contact Us Page" readonly />
+                                                        <label class="mdl-textfield__label" for="content-type">Content Type</label>
+                                                    </div>
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--floating-label-extra-large">
+                                                        <input class="mdl-textfield__input" type="text" id="content-template" value="Contact Us Page" readonly />
+                                                        <label class="mdl-textfield__label" for="content-template">Content Template</label>
+                                                    </div>
+                                                    <div class="mdl-chip-labels">
+                                                        <span class="mdl-chip-title">Labels</span>
+                                                        <span class="mdl-chip">
+                                                            <span class="mdl-chip__text">label-one</span>
+                                                        </span>
+                                                        <span class="mdl-chip">
+                                                            <span class="mdl-chip__text">label-two</span>
+                                                        </span>
+                                                        <span class="mdl-chip">
+                                                            <span class="mdl-chip__text">label-three</span>
+                                                        </span>
+                                                        <span class="mdl-chip">
+                                                            <span class="mdl-chip__text">label-four</span>
+                                                        </span>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--12-col">
+                                        <div class="mdl-card__title">
+                                            <h2 class="mdl-card__title-text">Content</h2>
+                                        </div>
+                                        <div class="mdl-card mdl-shadow--2dp">
+                                            <div class="mdl-card__supporting-text">
+                                                <form action="#">
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--floating-label-extra-large">
+                                                        <input class="mdl-textfield__input" type="text" id="content-title" value="Thank you for contacting us" />
+                                                        <label class="mdl-textfield__label" for="content-title">Title</label>
+                                                    </div>
+                                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--floating-label-extra-large">
+                                                        <textarea class="mdl-textfield__input" type="text" rows="8" id="content-body">We appreciate that you’ve taken the time to write us. We’ll get back to you very soon. Please come back and see us often. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                                                        <label class="mdl-textfield__label" for="content-body">Body</label>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @RenderBody()
+                            </div>
+                        </main>
+                    </div>
                 </div>
             </main>
         </div>
