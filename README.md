@@ -25,7 +25,3 @@ kubectl get all,ingress --namespace kubecms
 [![data](https://github.com/kubecms/kubecms/workflows/data/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3Adata)
 [![publisher](https://github.com/kubecms/kubecms/workflows/publisher/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3Apublisher)
 [![registry](https://github.com/kubecms/kubecms/workflows/registry/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3Aregistry)
-
-## License
-
-Kube CMS is distributed under the [MIT license](LICENSE).
