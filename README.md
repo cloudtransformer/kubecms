@@ -6,7 +6,7 @@ Kube CMS is a Content Management System that is designed to run within a multi-n
 
 ## Installation
 
-The Kube CMS `install.sh` script is a quick way to install Kube CMS onto your cluster. Using your current context, the script will create a new namespace and all the resources type it requires:
+The `install.sh` script is a quick way to install Kube CMS onto your cluster. Using your current context, the script will create a new namespace and all the resources type it requires:
 
 ```bash
 curl -sfL http://get.kubecms.com | sh -
