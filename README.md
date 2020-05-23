@@ -1,6 +1,6 @@
 ## Kube CMS
 
-Kube CMS is a Content Management System that is designed to run within a multi-node Kubernetes cluster. Kube CMS works with Kuberenetes, Minikube and K3s. It provides a de-coupled backoffice editor and an internal image registry where versions of your websites are published too. Using an internal image registry allows Kube CMS to host your website and provide instant roll-backs, scaling and high availability.
+Kube CMS is a Content Management System that is designed to run within a multi-node Kubernetes cluster. Kube CMS works with Kuberenetes, Minikube and K3s. It provides a de-coupled backoffice editor and an internal image registry where versions of your websites are published too. Using the internal image registry allows Kube CMS to host your website and provide instant roll-backs, scaling and high availability.
 
 ![](images/backoffice.png)
 
