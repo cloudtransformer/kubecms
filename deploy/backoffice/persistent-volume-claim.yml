@@ -7,7 +7,6 @@ metadata:
     app: kubecms
     service: kubecms-backoffice
 spec:
-  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:

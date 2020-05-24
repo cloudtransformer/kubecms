@@ -29,4 +29,4 @@ spec:
         - containerPort: 80
         volumeMounts:
         - name: kubecms-backoffice-volume
-          mountPath: /data/kubecms/backoffice
+          mountPath: /data/kubecms/backoffice/
