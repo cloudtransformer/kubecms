@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: kubecms
-  name: kubecms-data
+  name: kubecms-queue
   labels:
     app: kubecms
-    service: kubecms-data
+    service: kubecms-queue
 spec:
   selector:
     app: kubecms
-    service: kubecms-data
+    service: kubecms-queue
   ports:
     - protocol: TCP
-      port: 5001
+      port: 5002
       targetPort: 80

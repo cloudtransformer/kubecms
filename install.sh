@@ -91,12 +91,19 @@ apply_namespace()
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/namespace.yml"
 }
 
+# --- apply persistent volume manifests ---
+apply_persistentvolumes()
+{
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/backoffice/persistent-volume.yml"
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/backoffice/persistent-volume-claim.yml"
+}
+
 # --- apply deployment manifests ---
 apply_deployments()
 {
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/backoffice/deployment.yml"
-    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/data/deployment.yml"
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/publisher/deployment.yml"
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/queue/deployment.yml"
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/registry/deployment.yml"
 }
 
@@ -104,8 +111,8 @@ apply_deployments()
 apply_services()
 {
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/backoffice/service.yml"
-    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/data/service.yml"
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/publisher/service.yml"
+    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/queue/service.yml"
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/registry/service.yml"
 }
 
@@ -181,6 +188,7 @@ open_backoffice()
     extract_zip
 
     apply_namespace
+    apply_persistentvolumes
     apply_deployments
     apply_services
     apply_ingress

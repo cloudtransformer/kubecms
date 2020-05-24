@@ -12,5 +12,5 @@ spec:
     service: kubecms-publisher
   ports:
     - protocol: TCP
-      port: 5002
+      port: 5001
       targetPort: 80

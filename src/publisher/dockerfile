@@ -1,1 +1,1 @@
-FROM nginx:1.18.0
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1

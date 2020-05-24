@@ -18,8 +18,15 @@ spec:
         app: kubecms
         service: kubecms-backoffice
     spec:
+      volumes:
+      - name: kubecms-backoffice-volume
+        persistentVolumeClaim:
+          claimName: kubecms-backoffice-pvc
       containers:
       - name: kubecms-backoffice
         image: kubecms/kubecms-backoffice:latest
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: kubecms-backoffice-volume
+          mountPath: /data/kubecms/backoffice
