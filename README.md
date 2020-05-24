@@ -22,6 +22,6 @@ kubectl get all,ingress,persistentvolumeclaim --namespace kubecms
 
 [![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![backoffice](https://github.com/kubecms/kubecms/workflows/backoffice/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3Abackoffice)
-[![data](https://github.com/kubecms/kubecms/workflows/data/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3Adata)
 [![publisher](https://github.com/kubecms/kubecms/workflows/publisher/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3Apublisher)
+[![queue](https://github.com/kubecms/kubecms/workflows/queue/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%queue)
 [![registry](https://github.com/kubecms/kubecms/workflows/registry/badge.svg)](https://github.com/kubecms/kubecms/actions?query=workflow%3Aregistry)
