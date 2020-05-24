@@ -91,10 +91,9 @@ apply_namespace()
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/namespace.yml"
 }
 
-# --- apply persistent volume manifests ---
-apply_persistentvolumes()
+# --- apply persistent volume claims manifests ---
+apply_persistentvolumeclaims()
 {
-    kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/backoffice/persistent-volume.yml"
     kubectl apply -f "kubecms-${GITHUB_VERSION}/deploy/backoffice/persistent-volume-claim.yml"
 }
 
@@ -188,7 +187,7 @@ open_backoffice()
     extract_zip
 
     apply_namespace
-    apply_persistentvolumes
+    apply_persistentvolumeclaims
     apply_deployments
     apply_services
     apply_ingress

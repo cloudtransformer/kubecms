@@ -15,7 +15,7 @@ curl -sfL http://get.kubecms.com | sh -
 To verify what namespace, services, deployments, pods, replica sets and ingress resources the install script creates, use the following command:
 
 ```bash
-kubectl get all,ingress,persistentvolume,persistentvolumeclaim --namespace kubecms
+kubectl get all,ingress,persistentvolumeclaim --namespace kubecms
 ```
 
 ## Status
