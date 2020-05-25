@@ -4,4 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\Sites\" />
+    <Folder Include="Components\" />
+    <Folder Include="Options\" />
+    <Folder Include="Views\Sites\" />
+  </ItemGroup>
 </Project>

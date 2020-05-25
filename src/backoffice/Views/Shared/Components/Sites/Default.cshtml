@@ -1,0 +1,16 @@
+﻿@model IEnumerable<string>
+
+@if (Model != null && Model.Any())
+{
+    <a id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon material-icons mdl-badge mdl-badge--overlap">
+        <i class="material-icons">language</i>
+    </a>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+        @foreach (var site in Model)
+        {
+            <li class="mdl-menu__item">
+                <a asp-controller="Sites" asp-action="GetSite" asp-route-id="@site">@site</a>
+            </li>
+        }
+    </ul>
+}
