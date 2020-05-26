@@ -1,0 +1,49 @@
+﻿<a id="menu-resourcetypes" class="mdl-button mdl-js-button mdl-button--icon material-icons mdl-badge mdl-badge--overlap">
+    <i class="material-icons">add</i>
+</a>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu-resourcetypes">
+    <li id="link-add-site" class="mdl-menu__item">Site</li>
+</ul>
+
+<dialog id="dialog-add-site" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">What is the domain of your new site?</h4>
+    <div class="mdl-dialog__content">
+        <p>This will be the site's unique identifier. You can change this later if you like or add more domains.</p>
+        <form asp-controller="Sites" asp-action="PostSite" method="POST">
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="id" name="id">
+                <label class="mdl-textfield__label" for="add-site-domain">Domain...</label>
+            </div>
+        </form>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="submit" class="mdl-button" id="add-site-button" disabled>Create</button>
+        <button type="button" class="mdl-button close">Close</button>
+    </div>
+</dialog>
+
+<script>
+    var dialog = document.querySelector('#dialog-add-site');
+    var dialogButton = document.querySelector('#link-add-site');
+
+    document.querySelector('#id').addEventListener("keyup", function () {
+        var nameInput = document.querySelector('#id').value;
+        if (nameInput != "") {
+            document.querySelector('#add-site-button').removeAttribute("disabled");
+        } else {
+            document.querySelector('#add-site-button').setAttribute("disabled", null);
+        }
+    });
+
+    if (!dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+
+    dialogButton.addEventListener('click', function() {
+      dialog.showModal();
+    });
+
+    dialog.querySelector('.close').addEventListener('click', function() {
+      dialog.close();
+    });
+</script>

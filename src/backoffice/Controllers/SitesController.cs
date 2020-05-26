@@ -14,6 +14,12 @@ namespace KubeCMS.Backoffice.Controllers
             _options = options.Value;
         }
 
+        [Route("sites")]
+        public IActionResult GetSites()
+        {
+            return View();
+        }
+
         [Route("sites/{id}")]
         public IActionResult GetSite(string id)
         {
@@ -24,6 +30,18 @@ namespace KubeCMS.Backoffice.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpPost]
+        [Route("sites/{id}")]
+        public IActionResult PostSite(string id)
+        {
+            if (!Directory.Exists($"{_options.DataPath}{id}"))
+            {
+                Directory.CreateDirectory($"{_options.DataPath}{id}");
+            }
+
+            return RedirectToAction("GetSite", new { id });
         }
     }
 }

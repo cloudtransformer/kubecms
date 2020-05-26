@@ -143,6 +143,15 @@
                 color: rgba(0,0,0,.87);
                 text-decoration: none;
             }
+            .mdl-dialog__title {
+                font-size: 1.5em;
+            }
+            .mdl-dialog {
+                width: 400px;
+            }
+            .mdl-dialog .mdl-textfield {
+                width: 352px;
+            }
         </style>
     </head>
     <body>
@@ -153,7 +162,7 @@
                     <span class="mdl-layout-title">Kube CMS</span>
                     <div class="mdl-layout-spacer"></div>
                     <nav class="mdl-navigation mdl-layout--large-screen-only">
-                        <a href="#" class="material-icons mdl-badge mdl-badge--overlap">add</a>
+                        @await Component.InvokeAsync("ResourceTypes")
                         @await Component.InvokeAsync("Sites")
                         <a href="#" class="material-icons mdl-badge mdl-badge--overlap" data-badge="2">notifications</a>
                     </nav>
@@ -164,7 +173,7 @@
                     <i class="material-icons">menu</i>
                 </div>
                 <div class="mdl-layout__header-row">
-                    <span class="mdl-layout-title"><span class="fade">Content > Home > Contact ></span> Thank You</span>
+                    <span class="mdl-layout-title"></span>
                 </div>
             </header>
             <main class="mdl-layout__content mdl-layout__content-main">

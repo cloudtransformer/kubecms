@@ -15,5 +15,7 @@
     <Folder Include="Components\" />
     <Folder Include="Options\" />
     <Folder Include="Views\Sites\" />
+    <Folder Include="Views\Shared\Components\ResourceTypes\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
 </Project>
