@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace backoffice
+namespace KubeCMS.Backoffice
 {
     public class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace backoffice.Options
+﻿namespace KubeCMS.Backoffice.Options
 {
     public class BackofficeOptions
     {

@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using System.Linq;
-using backoffice.Options;
+using KubeCMS.Backoffice.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-namespace backoffice.Controllers
+namespace KubeCMS.Backoffice.Controllers
 {
     public class SitesViewComponent : ViewComponent
     {
@@ -17,22 +17,17 @@ namespace backoffice.Controllers
 
         public IViewComponentResult Invoke()
         {
-            if (string.IsNullOrEmpty(_options.DataPath))
+            if (Directory.Exists(_options.DataPath))
             {
-                return View();
+                var retval = Directory.GetDirectories(_options.DataPath)
+                                .Select(Path.GetFileName)
+                                .OrderBy(q => q)
+                                .ToList();
+
+                return View(retval);
             }
 
-            if (!Directory.Exists(_options.DataPath))
-            {
-                Directory.CreateDirectory(_options.DataPath);
-            }
-
-            var retval = Directory.GetDirectories(_options.DataPath)
-                            .Select(Path.GetFileName)
-                            .OrderBy(q => q)
-                            .ToList();
-
-            return View(retval);
+            return View();
         }
     }
 }
