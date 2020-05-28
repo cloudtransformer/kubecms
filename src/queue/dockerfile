@@ -1,1 +1,1 @@
-FROM arm32v7/rabbitmq:3.8.4
+FROM rabbitmq:3.8.4
