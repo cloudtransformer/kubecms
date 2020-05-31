@@ -6,23 +6,39 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DOCKER_CLI_EXPERIMENTAL: enabled
+      DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
+      DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      DOCKER_REPO: kubecms
+      DOCKER_PLATFORMS: >
+        linux/amd64
+        linux/arm/v7
     steps:
-    - uses: actions/checkout@v2
-    - id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-    - uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: kubecms/kubecms-backoffice
-        tags: ${{ steps.get_version.outputs.VERSION }}-linux-amd64
-        dockerfile: ./src/backoffice/dockerfile
-        path: ./src/backoffice
-    - uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: kubecms/kubecms-backoffice
-        tags: ${{ steps.get_version.outputs.VERSION }}-linux-arm
-        dockerfile: ./src/backoffice/dockerfile.debian-arm32
-        path: ./src/backoffice
+    - name: Checkout Code
+      uses: actions/checkout@v2
+    - name: Set Up Image Tag
+      run: |
+        set -vx
+        echo "::set-env name=TAG::${GITHUB_REF/refs\/tags\//}"
+        echo "::set-env name=DOCKER_BASE::${DOCKER_REPO}/${DOCKER_REPO}"
+    - name: Install Docker buildx
+      run: |
+        set -vx
+        docker_apt_repo='https://download.docker.com/linux/ubuntu'
+        curl -fsSL "${docker_apt_repo}/gpg" | sudo apt-key add -
+        os="$(lsb_release -cs)"
+        sudo add-apt-repository "deb [arch=amd64] $docker_apt_repo $os stable"
+        sudo apt-get update
+        sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+        config='/etc/docker/daemon.json'
+        if [[ -e "$config" ]]; then
+          sudo sed -i -e 's/{/{ "experimental": true, /' "$config"
+        else
+          echo '{ "experimental": true }' | sudo tee "$config"
+        fi
+        sudo systemctl restart docker
+        docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+        docker buildx create --name mybuilder
+        docker buildx use mybuilder
+        docker buildx inspect --bootstrap
