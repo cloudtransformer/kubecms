@@ -25,3 +25,5 @@ jobs:
         tags: ${{ steps.get_version.outputs.VERSION }}-arm
         dockerfile: ./src/backoffice/dockerfile.debian-arm32
         path: ./src/backoffice
+    - run: docker manifest create kubecms/kubecms-backoffice:latest kubecms/kubecms-backoffice:${{ steps.get_version.outputs.VERSION }}-amd64 ${{ steps.get_version.outputs.VERSION }}-arm
+    - run: docker manifest inspect kubecms/kubecms-backoffice:latest
