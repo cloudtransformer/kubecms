@@ -10,7 +10,7 @@ jobs:
     - id: get_version
       run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
     - run: |
-        echo "{ \"experimental\": true }" >> /etc/docker/daemon.json
+        echo "{ \"experimental\": true }" >> sudo tee /etc/docker/daemon.json
         sudo service docker restart
         docker version -f '{{.Server.Experimental}
     - uses: docker/build-push-action@v1
