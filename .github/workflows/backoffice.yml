@@ -42,3 +42,16 @@ jobs:
         docker buildx create --name mybuilder
         docker buildx use mybuilder
         docker buildx inspect --bootstrap
+    - name: Build multi-architecture Docker images with buildx
+      run: |
+        set -vx
+        echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USER" --password-stdin
+        function buildx() {
+          docker buildx build \
+            --platform ${DOCKER_PLATFORMS// /,} \
+            --push \
+            -f ./src/backoffice/Dockerfile \
+            "$@" \
+            ./src/backoffice/
+        }
+        buildx -t "$DOCKER_BASE:$TAG"
