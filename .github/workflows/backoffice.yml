@@ -47,4 +47,4 @@ jobs:
       run: |
         set -vx
         echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USER" --password-stdin
-        docker buildx build --platform ${DOCKER_PLATFORMS// /,} --push --tag "$DOCKER_BASE:$TAG","$DOCKER_BASE:latest" --file ./src/backoffice/dockerfile ./src/backoffice/
+        docker buildx build --platform ${DOCKER_PLATFORMS// /,} --push --tag "$DOCKER_BASE:$TAG" --tag "$DOCKER_BASE:latest" --file ./src/backoffice/dockerfile ./src/backoffice/
