@@ -12,7 +12,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: kubecms/kubecms-backoffice
-        tags: ${{ GITHUB_REF }}-amd64
+        tags: ${{ github.ref }}-amd64
         dockerfile: ./src/backoffice/dockerfile
         path: ./src/backoffice
     - uses: docker/build-push-action@v1
@@ -20,6 +20,6 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: kubecms/kubecms-backoffice
-        tags: ${{ GITHUB_REF }}-arm
+        tags: ${{ github.ref }}-arm
         dockerfile: ./src/backoffice/dockerfile.debian-arm32
         path: ./src/backoffice
