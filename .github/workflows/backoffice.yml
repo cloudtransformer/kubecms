@@ -2,6 +2,8 @@ name: backoffice
 on:
   create:
     ref_type: tag
+env:
+  DOCKER_CLI_EXPERIMENTAL: enabled
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,4 +28,4 @@ jobs:
         dockerfile: ./src/backoffice/dockerfile.debian-arm32
         path: ./src/backoffice
     - run: docker manifest create kubecms/kubecms-backoffice:latest kubecms/kubecms-backoffice:${{ steps.get_version.outputs.VERSION }}-amd64 ${{ steps.get_version.outputs.VERSION }}-arm
-    - run: docker manifest inspect kubecms/kubecms-backoffice:latest
+    - run: docker manifest push kubecms/kubecms-backoffice:latest
