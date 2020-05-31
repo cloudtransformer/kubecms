@@ -9,23 +9,5 @@ jobs:
     - uses: actions/checkout@v2
     - id: get_version
       run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-    - uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: kubecms/kubecms-backoffice
-        tags: ${{ steps.get_version.outputs.VERSION }}-amd64
-        dockerfile: ./src/backoffice/dockerfile
-        path: ./src/backoffice
-    - uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: kubecms/kubecms-backoffice
-        tags: ${{ steps.get_version.outputs.VERSION }}-arm
-        dockerfile: ./src/backoffice/dockerfile.debian-arm32
-        path: ./src/backoffice
-    - run: |
-        export DOCKER_CLI_EXPERIMENTAL=enabled
-        docker manifest create kubecms/kubecms-backoffice:latest kubecms/kubecms-backoffice:${{ steps.get_version.outputs.VERSION }}-amd64 ${{ steps.get_version.outputs.VERSION }}-arm
-        docker manifest push kubecms/kubecms-backoffice:latest
+    - run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+    - run: docker buildx build --push --tag kubecms/kubecms-backoffice:latest,${{ steps.get_version.outputs.VERSION }} --platform linux/amd64,linux/arm ./src/backoffice ./src/backoffice/dockerfile
