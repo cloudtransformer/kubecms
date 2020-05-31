@@ -10,7 +10,8 @@ jobs:
       DOCKER_CLI_EXPERIMENTAL: enabled
       DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      DOCKER_REPO: kubecms
+      DOCKER_ORG: kubecms
+      DOCKER_REPO: kubecms-backoffice
       DOCKER_PLATFORMS: >
         linux/amd64
         linux/arm/v7
@@ -21,7 +22,7 @@ jobs:
       run: |
         set -vx
         echo "::set-env name=TAG::${GITHUB_REF/refs\/tags\//}"
-        echo "::set-env name=DOCKER_BASE::${DOCKER_REPO}/${DOCKER_REPO}"
+        echo "::set-env name=DOCKER_BASE::${DOCKER_ORG}/${DOCKER_REPO}"
     - name: Install Docker buildx
       run: |
         set -vx
@@ -46,4 +47,4 @@ jobs:
       run: |
         set -vx
         echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USER" --password-stdin
-        docker buildx build --platform ${DOCKER_PLATFORMS// /,} --push --file ./src/backoffice/dockerfile --tag "$DOCKER_BASE:$TAG" ./src/backoffice/
+        docker buildx build --platform ${DOCKER_PLATFORMS// /,} --push --tag "$DOCKER_BASE:$TAG","$DOCKER_BASE:latest" --file ./src/backoffice/dockerfile ./src/backoffice/
