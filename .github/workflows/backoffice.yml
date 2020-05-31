@@ -7,12 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
     - uses: docker/build-push-action@v1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: kubecms/kubecms-backoffice
-        tags: ${{ github.ref }}-amd64
+        tags: ${{ VERSION }}-amd64
         dockerfile: ./src/backoffice/dockerfile
         path: ./src/backoffice
     - uses: docker/build-push-action@v1
@@ -20,6 +21,6 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: kubecms/kubecms-backoffice
-        tags: ${{ github.ref }}-arm
+        tags: ${{ VERSION }}-arm
         dockerfile: ./src/backoffice/dockerfile.debian-arm32
         path: ./src/backoffice
