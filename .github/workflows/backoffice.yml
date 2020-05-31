@@ -26,8 +26,6 @@ jobs:
         dockerfile: ./src/backoffice/dockerfile.debian-arm32
         path: ./src/backoffice
     - run: |
-        echo $'{\n    "experimental": true\n}' | sudo tee /etc/docker/daemon.json
-        sudo service docker restart
-        docker version -f '{{.Server.Experimental}}'
+        export DOCKER_CLI_EXPERIMENTAL=enabled
         docker manifest create kubecms/kubecms-backoffice:latest kubecms/kubecms-backoffice:${{ steps.get_version.outputs.VERSION }}-amd64 ${{ steps.get_version.outputs.VERSION }}-arm
         docker manifest push kubecms/kubecms-backoffice:latest
