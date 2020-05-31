@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - id: buildx
-    - uses: crazy-max/ghaction-docker-buildx@v2
+      uses: crazy-max/ghaction-docker-buildx@v2
     - id: get_version
       run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
     - name: Available platforms
