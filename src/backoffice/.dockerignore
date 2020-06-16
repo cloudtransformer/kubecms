@@ -1,7 +1,9 @@
+# Directories
 **/bin/
 **/obj/
 **/out/
 
+# Files
 Dockerfile*
 **/*.trx
 **/*.md
