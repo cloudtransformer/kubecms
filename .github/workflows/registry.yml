@@ -14,5 +14,5 @@ jobs:
         repository: kubecms/kubecms-registry
         tag_with_ref: true
         tags: latest
-        dockerfile: ./src/queue/registry
+        dockerfile: ./src/registry/dockerfile
         path: ./src/registry
