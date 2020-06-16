@@ -5,9 +5,9 @@ COPY *.csproj .
 RUN dotnet restore
 
 COPY . .
-RUN dotnet publish -c release -o /app -r linux-arm --self-contained false --no-restore
+RUN dotnet publish -c release -o /app --no-restore
 
-FROM mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim-arm32v7
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build /app .
-ENTRYPOINT ["dotnet", "KubeCMS.Backoffice.dll"] 
+ENTRYPOINT ["dotnet", "KubeCMS.Backoffice.dll"]
